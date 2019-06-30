@@ -3,6 +3,7 @@ const ejs = require('ejs');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtensionReloader = require('webpack-extension-reloader');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const { version } = require('./package.json');
 
@@ -10,6 +11,7 @@ const config = {
   mode: process.env.NODE_ENV,
   context: __dirname + '/src',
   entry: {
+    'content/index':'./content/index.js',
     'background': './background.js',
     'popup/popup': './popup/popup.js',
     'options/options': './options/options.js',
@@ -17,6 +19,9 @@ const config = {
   output: {
     path: __dirname + '/dist',
     filename: '[name].js',
+  },
+  node: {
+    fs: 'empty'
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -54,6 +59,7 @@ const config = {
     ],
   },
   plugins: [
+    // new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       global: 'window',
     }),
@@ -62,7 +68,9 @@ const config = {
       filename: '[name].css',
     }),
     new CopyWebpackPlugin([
-      { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
+      // { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
+      { from: 'static', to: 'static', ignore: ['icon.xcf'] },
+      // { from: 'content/index.js', to: 'content/content.js', transform: transformHtml },
       { from: 'popup/popup.html', to: 'popup/popup.html', transform: transformHtml },
       { from: 'options/options.html', to: 'options/options.html', transform: transformHtml },
       {

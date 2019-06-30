@@ -19,6 +19,7 @@
     }
   },
   "dependencies": {
+    "chinese-tokenizer": "^2.4.0",
     "vue": "^2.6.10",
     "webextension-polyfill": "^0.3.1"
   },
@@ -30,6 +31,7 @@
     "archiver": "^3.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.2",
+    "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^4.5.3",
     "core-js": "^3.0.1",
     "cross-env": "^5.2.0",
