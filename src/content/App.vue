@@ -1,23 +1,14 @@
 <template lang="html">
-    <div id="zh-ext-container">
+    <div id="zh-ext-container" v-if="textmatch.length>0">
       <!-- {{selectedText}} -->
-      <li v-for="(word, index) in textmatch">
+      <!-- <li v-for="(word, index) in textmatch">
         {{ word.text }} {{ word.matches[0]['pinyinPretty'] }} - {{word.matches[0]['english']}}
-      </li>
-      <!-- <el-row v-for="(word, index) in textmatch" key="word.text">
-        <el-col :span="24"><div class="grid-content bg-purple-dark">
-          {{ word.text }} {{ word.matches[0]['pinyinPretty'] }} - {{word.matches[0]['english']}}
-        </div>
-        </el-col>
-      </el-row> -->
-      <!-- <el-row :gutter="10">
-        <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div class="grid-content bg-purple"></div></el-col>
-        <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div class="grid-content bg-purple-light"></div></el-col>
-      </el-row>
-      <!-- {{textmatch}} -->
+      </li> -->
+      <word v-for="(word, index) in textmatch" :word="word" :key="word.text+'-'+index"></word>
     </div>
 </template>
 <script>
+import Word from './word'
 // var tokenize = null
 // // console.log(JSON.stringify(tokenize('我是中国人。'), null, '  '))
 // var res = ''
@@ -36,6 +27,9 @@ export default {
     textmatch: '',
     tokenizer: null,
   }),
+  components:{
+    'word':Word
+  },
   computed: {},
   created() {
     // console.log('content')
@@ -91,6 +85,8 @@ div {
 }
 #zh-ext-container {
   /* height: 40px;  */
+  text-align: center;
+  font-size: 1.5rem;
   padding: 10px;
   position: fixed;
   bottom: 0%;

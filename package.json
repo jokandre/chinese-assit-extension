@@ -19,6 +19,8 @@
     }
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.24",
     "chinese-tokenizer": "^2.4.0",
     "vue": "^2.6.10",
     "webextension-polyfill": "^0.3.1"
