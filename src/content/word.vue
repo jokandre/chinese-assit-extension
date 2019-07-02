@@ -1,7 +1,26 @@
 <template>
   <span>
-  <span class="tooltip" v-on:click="toggle"> 
-    {{ word.text }}</span>
+  <!-- <span class="tooltip" v-on:click="toggle"> 
+    {{ word.text }}</span> -->
+    <!-- <button v-popover:foo.top>Toggle popover</button>
+    <popover name="foo">
+      Hello!
+    </popover> -->
+  <el-popover
+    placement="top"
+    trigger="click" >
+    <p v-for="(item, index) in [word.matches[0]]" :key="item['english']+'-'+index">
+      {{item['pinyinPretty']}}
+      <!-- <ul class="example-1"> -->
+        <span v-for="(meaning, idx) in item['english'].split('/')" :key="meaning+'-'+idx">
+          <br/>&#10032; {{ meaning }}
+        </span>
+      <!-- </ul> -->
+    </p>
+    <!-- <el-button slot="reference">{{ word.text }}</el-button> -->
+    <span slot="reference">{{ word.text }}</span>
+  </el-popover>
+
     <!-- <span
       class="tooltiptext"
       :class="{tooltiptextshow:isActive}"
@@ -27,7 +46,6 @@
 </template>
 
 <script>
-// import Vue from 'vue';
 
 export default {
   data() {
@@ -60,12 +78,18 @@ export default {
 };
 </script>
 
-<style scoped>
-p {
-  color: blue;
+<style lang="scss" scoped>
+// p {
+//   color: blue;
+// }
+body{
+  word-break: break-word;
 }
 span:hover {
   background-color: yellow;
+}
+.el-popover{
+  z-index:214748343;
 }
 /* .tooltip {
   position: relative;
@@ -109,5 +133,16 @@ span:hover {
 .tooltip:active .tooltiptext {
   visibility: visible;
 }  */
+// @import 'node_modules/bootstrap/scss/bootstrap';
+// @import 'node_modules/bootstrap-vue/src/index.scss';
 
+/* theme color */
+// $--color-primary: teal;
+
+/* icon font path, required */
+// $--font-path: '~element-ui/lib/theme-chalk/fonts';
+// @import 'element-theme-default';
+// @import "~element-ui/packages/theme-chalk/src/index";
+// @import 'element-ui/lib/theme-chalk/reset.css';
+// @import '~element-ui/lib/theme-chalk/index.css';
 </style>

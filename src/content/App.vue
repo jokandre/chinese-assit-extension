@@ -4,10 +4,13 @@
       <!-- <li v-for="(word, index) in textmatch">
         {{ word.text }} {{ word.matches[0]['pinyinPretty'] }} - {{word.matches[0]['english']}}
       </li> -->
-      <word v-for="(word, index) in textmatch" :word="word" :key="word.text+'-'+index"></word>
+      <word v-if="word.matches.length>0" v-for="(word, index) in textmatch" :word="word" :key="word.text+'-'+index"></word>
+      <span v-else>{{word.text}}</span>
     </div>
 </template>
 <script>
+import Vue from 'vue';
+
 import Word from './word'
 // var tokenize = null
 // // console.log(JSON.stringify(tokenize('我是中国人。'), null, '  '))
@@ -90,9 +93,10 @@ div {
   padding: 10px;
   position: fixed;
   bottom: 0%;
+  /* margin: auto; */
   width: 100vw;
   background-color: rgb(230, 230, 230);
   opacity: 1;
-  z-index: 2147483643;
+  z-index: 214748343;
 }
 </style>

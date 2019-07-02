@@ -56,6 +56,10 @@ const config = {
           name: '[name].[ext]?emitFile=false',
         },
       },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        loader: 'url-loader'
+      },
     ],
   },
   plugins: [
